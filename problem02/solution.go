@@ -6,9 +6,9 @@ import (
 	"strconv"
 )
 
-//现要求游戏玩家的⽤户名是 user 后加上不重复且随机的正整数，
+// 现要求游戏玩家的⽤户名是 user 后加上不重复且随机的正整数，
 
-//请参考 PostgreSQL 中 pseudo_encrypt() 的原理，使⽤指定编程语⾔，实现⼀个⾼效的⽤户名⽣成算法。
+// 请参考 PostgreSQL 中 pseudo_encrypt() 的原理，使⽤指定编程语⾔，实现⼀个⾼效的⽤户名⽣成算法。
 
 const prefix = "user_"
 
@@ -22,7 +22,7 @@ func generateUsername(index int) (username string, err error) {
 }
 
 
-//https://wiki.postgresql.org/wiki/Pseudo_encrypt
+// https://wiki.postgresql.org/wiki/Pseudo_encrypt
 func pseudoEncrypt(value int32) int32 {
 	var l1, r1, l2, r2 int32
 	l1 = (value >> 16) & 0xffff
