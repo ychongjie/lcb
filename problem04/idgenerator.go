@@ -7,6 +7,8 @@ import (
 	"time"
 )
 
+// 简易代码示例
+
 type IDGenerator interface {
 	GenerateID() int32
 }

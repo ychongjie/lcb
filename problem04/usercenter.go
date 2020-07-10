@@ -5,7 +5,7 @@ import (
 	"errors"
 )
 
-// 简易代码实例
+// 简易代码示例
 
 type UserInfo struct {
 	UserID int32
