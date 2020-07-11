@@ -8,19 +8,24 @@ import (
 )
 
 // 简易代码示例
-
+const (
+	bucketCount = 64 // bucket 数量, 设计时预定好, 便于后期扩容
+	incrRange = 1000 // 一次批量取出的 id 范围
+)
 type IDGenerator interface {
 	GenerateID() int32
 }
 
-func NEWIDGenerator() *idGenerator {
+func NEWIDGenerator(bucket int) *idGenerator {
 	idGen := new(idGenerator)
+	idGen.bucket = bucket
 	idGen.startTime, idGen.endTime = idGen.getNextIDRange()
 	return idGen
 }
 
 type idGenerator struct {
 	sync.Mutex
+	bucket int
 	startTime int
 	endTime int
 }
@@ -39,7 +44,8 @@ func (i *idGenerator) GenerateID() int32 {
 }
 
 func (i *idGenerator) getNextIDRange() (start int, end int) {
-	return 0, 100
+	// 根据 bucket 值去 redis 中做对应的 INCRBY 操作
+	return 0, incrRange
 }
 
 var a, b, c int
